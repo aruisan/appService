@@ -15,4 +15,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/demo', 'Admin\ActividadController');

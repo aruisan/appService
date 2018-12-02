@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', 'Auth\LoginController@login');
+
+Route::middleware('jwt.auth')->get('users', function () {
+	Route::resource('demo', 'Admin\ActividadController');
+ //return auth('api')->user();
+});
