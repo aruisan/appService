@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -23,6 +24,32 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+
+
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required',
+            'password'=> 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+        User::create([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+        ]);
+        $credentials = request(['email', 'password']);
+        $token = auth('api')->attempt($credentials);
+        
+        return response()->json([
+            'user' => auth('api')->user(),
+            'token' => $token,
+            'expires' => auth('api')->factory()->getTTL() * 60,
+        ]);
+    }
     /**
      * Where to redirect users after registration.
      *

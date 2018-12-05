@@ -15,7 +15,7 @@ class ActividadController extends Controller
     public function index()
     {
         $localizacion = geoip()->getLocation($_SERVER["REMOTE_ADDR"]);
-        dd($localizacion);
+        return response()->json(auth('api')->user(), 200);
     }
 
 
