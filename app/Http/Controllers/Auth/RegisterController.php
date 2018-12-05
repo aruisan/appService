@@ -34,7 +34,7 @@ class RegisterController extends Controller
             'password'=> 'required'
         ]);
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json(['status' => 'error', $validator->errors()]);
         }
         User::create([
             'name' => $request->get('name'),
@@ -45,7 +45,8 @@ class RegisterController extends Controller
         $token = auth('api')->attempt($credentials);
         
         return response()->json([
-            'user' => auth('api')->user(),
+            //'user' => auth('api')->user(),
+            'status' => 'success', 
             'token' => $token,
             'expires' => auth('api')->factory()->getTTL() * 60,
         ]);
