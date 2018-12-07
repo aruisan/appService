@@ -82,7 +82,7 @@ class LoginController extends Controller
 
     public function authAndRedirect($user)
     {
-        $token = auth()->login($user);
+        $token = auth('api')->login($user);
         dd($token);
     }
 
