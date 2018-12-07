@@ -82,9 +82,8 @@ class LoginController extends Controller
 
     public function authAndRedirect($user)
     {
-        Auth::login($user);
-        dd(Auth::user());
-        //return redirect('/home');
+        $token = auth('api')->fromUser($user);
+        dd($token);
     }
 
 
