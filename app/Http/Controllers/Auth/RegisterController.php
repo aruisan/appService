@@ -45,8 +45,8 @@ class RegisterController extends Controller
         $token = auth('api')->attempt($credentials);
         
         return response()->json([
-            //'user' => auth('api')->user(),
             'status' => 'success', 
+            'user' => auth('api')->user(),
             'token' => $token,
             'expires' => auth('api')->factory()->getTTL() * 60,
         ]);

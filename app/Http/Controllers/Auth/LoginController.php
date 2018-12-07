@@ -41,6 +41,20 @@ class LoginController extends Controller
     }
 
 
+    public function login() {
+        $credentials = request(['email', 'password']);
+        if (!$token = auth('api')->attempt($credentials)) {
+            return response()->json(['status' => 'error','error' => 'Unauthorized'], 401);
+        }
+        return response()->json([
+            'status' => 'success',
+            'user' => auth('api')->user(),
+            'token' => $token,
+            'expires' => auth('api')->factory()->getTTL() * 60,
+        ]);
+    }
+
+
     public function redirectToProvider($social)
     {
         return Socialite::driver($social)->redirect();
@@ -65,12 +79,9 @@ class LoginController extends Controller
         return $this->authAndRedirect($user);
     }
 
-
-    public function login() {
-        $credentials = request(['email', 'password']);
-        if (!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['status' => 'error','error' => 'Unauthorized'], 401);
-        }
+    public function authAndRedirect($user)
+    {
+        $token = auth('api')->login($user);
         return response()->json([
             'status' => 'success',
             'user' => auth('api')->user(),
@@ -80,20 +91,13 @@ class LoginController extends Controller
     }
 
 
-    public function authAndRedirect($user)
-    {
-        $token = auth('api')->login($user);
-        dd($token);
-    }
-
-
     public function logout(Request $request) 
     {
         // Get JWT Token from the request header key "Authorization"
         $token = $request->header('Authorization');
         // Invalidate the token
         try {
-            auth('api')->invalidate($token);
+            auth('api')->logout();
             return response()->json([
                 'status' => 'success', 
                 'message'=> "User successfully logged out."
