@@ -91,6 +91,12 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a id="google_login" class="circle google" href="/login/google">
+                                <i class="fa fa-google-plus fa-fw"></i>google
+                            </a>
+                            <a id="facebook_login" class="circle facebook" href="/login/facebook">facebook
+                                <i class="fa fa-facebook fa-fw"></i>
+                            </a>
                 </div>
             </div>
         </div>

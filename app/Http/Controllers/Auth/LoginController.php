@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -39,6 +40,32 @@ class LoginController extends Controller
     }
 
 
+    public function redirectToProvider($social)
+    {
+        return Socialite::driver($social)->redirect();
+    }
+
+
+    public function handleProviderCallback($social)
+    {
+        $userSocial = Socialite::driver($social)->user();
+        $user = User::where(['email' => $userSocial->getEmail()])->first();
+        if($user){
+            User::actualizar($user, $userSocial);
+            return $this->authAndRedirect($user);
+        }else{
+            $user = User::create([
+                'name' => $userSocial->name,
+                'email' => $userSocial->email,
+                'avatar' => $userSocial->avatar,
+            ]);
+            return $this->authAndRedirect($user);
+        }
+        
+        return back();
+    }
+
+
     public function login() {
         $credentials = request(['email', 'password']);
         if (!$token = auth('api')->attempt($credentials)) {
@@ -50,6 +77,14 @@ class LoginController extends Controller
             'token' => $token,
             'expires' => auth('api')->factory()->getTTL() * 60,
         ]);
+    }
+
+
+    public function authAndRedirect($user)
+    {
+        Auth::login($user);
+
+        return redirect('/home');
     }
 
 
