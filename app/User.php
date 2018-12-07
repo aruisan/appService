@@ -36,4 +36,11 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims() {
         return [];
     }
+
+    static function actualizar($user, $userSocial){
+        $update = $user;
+        $update->name =  $userSocial->name;
+        $update->avatar = $userSocial->avatar;
+        $update->save();
+    }
 }
