@@ -20,3 +20,5 @@ Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->where('
 
 Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
 
+Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
+
