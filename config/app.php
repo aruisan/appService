@@ -176,6 +176,8 @@ return [
         \Torann\GeoIP\GeoIPServiceProvider::class,
         //jwt
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        //cors
+        Barryvdh\Cors\ServiceProvider::class,
 
     ],
 
