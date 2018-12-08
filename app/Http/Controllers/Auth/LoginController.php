@@ -70,11 +70,11 @@ class LoginController extends Controller
         if($user){
             User::actualizar($user, $userSocial);
         }else{
-            $user = User::create([
-                'name' => $userSocial->name,
-                'email' => $userSocial->email,
-                'avatar' => $userSocial->avatar,
-            ]);
+            $user = new User;
+            $user->name = $userSocial->name;
+            $user->email = $userSocial->email;
+            $user->avatar = $userSocial->avatar;
+            $user->save();
         }
         return $this->authAndRedirect($user);
     }
@@ -94,11 +94,15 @@ class LoginController extends Controller
     public function logout(Request $request) 
     {
         // Get JWT Token from the request header key "Authorization"
-        $token = $request->header('Authorization');
+        $token = $request->header('token');
+        //dd($token);
         // Invalidate the token
         try {
-            auth('api')->logout();
+            //auth('api')->logout($token);
+            auth('api')->invalidate($token);
+            //dd(auth('api')->logout(true));
             return response()->json([
+                'user' => auth('api')->user(),
                 'status' => 'success', 
                 'message'=> "User successfully logged out."
             ]);
