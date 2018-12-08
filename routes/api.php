@@ -13,17 +13,17 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::middleware('cors')->group(function(){
 
+	Route::post('login', 'Auth\LoginController@login');
+	Route::post('register', 'Auth\RegisterController@register');
 
-Route::post('login', 'Auth\LoginController@login');
-Route::post('register', 'Auth\RegisterController@register');
+	Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->where('social', 'google|facebook');
 
-Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->where('social', 'google|facebook');
+	Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
 
-Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
-
-Route::middleware('jwt.auth')->group(function(){
-    Route::resource('demo', 'Admin\ActividadController');
-    Route::get('logout', 'Auth\LoginController@logout');
+	Route::middleware('jwt.auth')->group(function(){
+	    Route::resource('demo', 'Admin\ActividadController');
+	    Route::get('logout', 'Auth\LoginController@logout');
+	});
 });
-
