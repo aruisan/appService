@@ -23,7 +23,12 @@ use Illuminate\Http\Request;
 	Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
 
 	Route::middleware('jwt.auth')->group(function(){
-	    Route::resource('demo', 'Admin\ActividadController');
 	    Route::get('logout', 'Auth\LoginController@logout');
+	    Route::post('refresh', 'Auth\LoginController@refresh');
+
+	    Route::resource('demo', 'Admin\ActividadController');
+		Route::get('melocation', 'UserController@meLocation');
+		Route::post('confirmarTelefono', 'PhoneController@postConfirmPhone');
+		Route::post('enviarTelefono', 'PhoneController@requestSms');
 	});
 
