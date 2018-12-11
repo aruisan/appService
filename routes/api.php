@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('cors')->group(function(){
+
 
 	Route::post('login', 'Auth\LoginController@login');
 	Route::post('register', 'Auth\RegisterController@register');
@@ -26,4 +26,4 @@ Route::middleware('cors')->group(function(){
 	    Route::resource('demo', 'Admin\ActividadController');
 	    Route::get('logout', 'Auth\LoginController@logout');
 	});
-});
+
