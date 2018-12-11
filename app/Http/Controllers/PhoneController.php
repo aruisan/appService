@@ -73,7 +73,7 @@ class PhoneController extends Controller
     public function responseErrors($errors)
     {
     	return response()->json([
-            'errorAuthy' => $this->getAuthyErrors($errors->errors()),
+            'errorAuthy' => $errors->errors(),
         ]);
     }
 }
