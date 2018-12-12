@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\Movil\movilApiRequest;
 use Socialite;
 use App\User;
 
@@ -60,6 +61,20 @@ class LoginController extends Controller
         return Socialite::driver($social)->redirect();
     }
 
+    public function loginProvider(movilApiRequest $request)
+    {
+        $user = User::where(['email' => $request->email])->first();
+        if($user){
+            User::actualizar($user, $request);
+        }else{
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->avatar = $request->avatar;
+            $user->save();
+        }
+        return $this->authAndRedirect($user);
+    }
 
     public function handleProviderCallback($social)
     {

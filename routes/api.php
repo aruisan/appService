@@ -18,9 +18,7 @@ use Illuminate\Http\Request;
 	Route::post('login', 'Auth\LoginController@login');
 	Route::post('register', 'Auth\RegisterController@register');
 
-	Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->where('social', 'google|facebook');
-
-	Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
+	Route::post('moviApiLogin', 'Auth\LoginController@loginProvider');
 
 	Route::middleware('jwt.auth')->group(function(){
 	    Route::resource('demo', 'Admin\ActividadController');
