@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tecnico;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Tecnico\TecnicoDocument;
 
 class TecnicoDocumentController extends Controller
 {
@@ -14,7 +15,8 @@ class TecnicoDocumentController extends Controller
      */
     public function index()
     {
-        //
+        $data = TecnicoDocument::all();
+        return view('welcome', compact('data'));
     }
 
     /**
@@ -35,7 +37,16 @@ class TecnicoDocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       $file = $request->file('file')->store('public/certificados');
+  
+       $create =  new TecnicoDocument;
+       $create->documento = 'nuevo documento';
+       $create->certificado = $file;
+       $create->user_id = 1;
+       $create->save();
+       
+       return back();
     }
 
     /**

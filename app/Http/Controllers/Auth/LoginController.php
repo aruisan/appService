@@ -55,12 +55,12 @@ class LoginController extends Controller
         ]);
     }
 
-
+/*
     public function redirectToProvider($social)
     {
         return Socialite::driver($social)->redirect();
     }
-
+*/
     public function loginProvider(movilApiRequest $request)
     {
         $user = User::where(['email' => $request->email])->first();
@@ -96,6 +96,7 @@ class LoginController extends Controller
 
     public function authAndRedirect($user)
     {
+        //genera el token
         $token = auth('api')->login($user);
         return response()->json([
             'status' => 'success',

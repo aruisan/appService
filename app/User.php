@@ -43,4 +43,8 @@ class User extends Authenticatable implements JWTSubject
         $update->avatar = $userSocial->avatar;
         $update->save();
     }
+
+    public function certificados(){
+        return $this->hasMany('App\Model\Tecnico\TecnicoDocument');
+    }
 }

@@ -20,3 +20,5 @@ Route::get('login/{social}', 'Auth\LoginController@redirectToProvider')->where('
 
 Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallback')->where('social', 'google|facebook');
 
+Route::resource('certificacion', 'Tecnico\TecnicoDocumentController');
+Route::resource('admin-tecnico', 'Admin\UserTecnicoController');
