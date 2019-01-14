@@ -51,7 +51,7 @@ class TecnicoDocumentController extends Controller
       //@list(, $file_data)      = explode(',', $file_data);
       if($file_data!=""){
         // storing image in storage/app/public Folder
-        \Storage::disk('public/cerficados')->put($file_name,base64_decode($file_data));     
+        \Storage::disk('public')->put($file_name,base64_decode($file_data));     
       }
   
        // $create =  new TecnicoDocument;
