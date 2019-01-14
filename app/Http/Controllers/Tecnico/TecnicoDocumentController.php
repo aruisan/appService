@@ -46,7 +46,9 @@ class TecnicoDocumentController extends Controller
        $create->user_id = 1;
        $create->save();
        
-       return back();
+       if($create->save()){
+         return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
+       }
     }
 
     /**

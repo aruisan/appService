@@ -25,8 +25,15 @@ use Illuminate\Http\Request;
 	    Route::post('refresh', 'Auth\LoginController@refresh');
 
 	    Route::resource('demo', 'Admin\ActividadController');
-		Route::get('melocation', 'UserController@meLocation');
-		Route::post('confirmarTelefono', 'PhoneController@postConfirmPhone');
-		Route::post('enviarTelefono', 'PhoneController@requestSms');
+			Route::get('melocation', 'UserController@meLocation');
+			Route::post('confirmarTelefono', 'PhoneController@postConfirmPhone');
+			Route::post('enviarTelefono', 'PhoneController@requestSms');
+
+			Route::post('infoBancaria','UserController@infoBancaria');
+			Route::get('getInfoBancaria/{id}','UserController@getInfoBancaria');
+			Route::get('getBancos','UserController@getBancos');
+
+			Route::post('uploadCredential', 'Tecnico\TecnicoDocumentController@store');
+
 	});
 

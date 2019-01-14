@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTecnicoDocumentsTable extends Migration
+class Cuentas extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateTecnicoDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tecnico_documents', function (Blueprint $table) {
+        Schema::create('cuentas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('documento')->nullable();
-            $table->string('certificado')->nullable();
-            $table->enum('aprobado', [1,0])->default(0);
-
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('banco_id');
+            $table->string('tipo_cuenta');
+            $table->string('cuenta');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('banco_id')->references('id')->on('bancos');
         });
     }
 
@@ -32,6 +33,7 @@ class CreateTecnicoDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tecnico_documents');
+        Schema::dropIfExists('cuentas');
+
     }
 }
