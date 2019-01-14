@@ -38,25 +38,24 @@ class TecnicoDocumentController extends Controller
     public function store(Request $request)
     {
 
-      $file_data = $request->input('file');
-      $file_name = 'image_'.time().'.jpg';
-      //@list(, $file_data)      = explode(',', $file_data);
-      if($file_data!=""){
-        // storing image in storage/app/public Folder
-
-        $file = base64_decode($file_data);
-        \Storage::disk('certificados')->put($file_name, $file);     
-      }
-  
-       // $create =  new TecnicoDocument;
-       // $create->documento = 'nuevo documento';
-       // $create->certificado = $file_name;
-       // $create->user_id = 1;
-       // $create->save();
+        $user = auth('api')->user();
+        $file_data = $request->input('file');
+        $file_name = 'image_'.time().'.jpg';
+        
+        if($file_data!=""){
+        
+            $file = base64_decode($file_data);
+            \Storage::disk('certificados')->put($file_name, $file);     
+        }
+      
+        $create =  new TecnicoDocument;
+        $create->documento = $file_name;
+        $create->certificado = $file_name;
+        $create->user_id = $user->id;
        
-       // if($create->save()){
-       //   return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
-       // }
+        if($create->save()){
+         return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
+        }
     }
 
     /**
