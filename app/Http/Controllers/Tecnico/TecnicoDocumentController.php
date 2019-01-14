@@ -38,10 +38,21 @@ class TecnicoDocumentController extends Controller
     public function store(Request $request)
     {
 
-         return response()->json(['data'=> $request->all(), 'status'=>'sucess'], 201);
-        // response        
+         // return response()->json(['data'=> $request->all(), 'status'=>'sucess'], 201);
 
        // $file = $request->file('file')->store('public/certificados');
+
+
+
+      $file_data = $request->input('file');
+      //generating unique file name;
+      $file_name = 'image_'.time().'.png';
+      //@list($type, $file_data) = explode(';', $file_data);
+      //@list(, $file_data)      = explode(',', $file_data);
+      if($file_data!=""){
+        // storing image in storage/app/public Folder
+        \Storage::disk('public/cerficados')->put($file_name,base64_decode($file_data));     
+      }
   
        // $create =  new TecnicoDocument;
        // $create->documento = 'nuevo documento';
