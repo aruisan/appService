@@ -38,17 +38,20 @@ class TecnicoDocumentController extends Controller
     public function store(Request $request)
     {
 
-       $file = $request->file('file')->store('public/certificados');
+         return response()->json(['data'=> $request->all(), 'status'=>'sucess'], 201);
+        // response        
+
+       // $file = $request->file('file')->store('public/certificados');
   
-       $create =  new TecnicoDocument;
-       $create->documento = 'nuevo documento';
-       $create->certificado = $file;
-       $create->user_id = 1;
-       $create->save();
+       // $create =  new TecnicoDocument;
+       // $create->documento = 'nuevo documento';
+       // $create->certificado = $file;
+       // $create->user_id = 1;
+       // $create->save();
        
-       if($create->save()){
-         return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
-       }
+       // if($create->save()){
+       //   return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
+       // }
     }
 
     /**
