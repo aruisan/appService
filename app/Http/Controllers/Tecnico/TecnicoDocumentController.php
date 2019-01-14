@@ -46,12 +46,14 @@ class TecnicoDocumentController extends Controller
 
       $file_data = $request->input('file');
       //generating unique file name;
-      $file_name = 'image_'.time().'.png';
+      $file_name = 'image_'.time().'.jpg';
       //@list($type, $file_data) = explode(';', $file_data);
       //@list(, $file_data)      = explode(',', $file_data);
       if($file_data!=""){
         // storing image in storage/app/public Folder
-        \Storage::disk('public')->put($file_name,base64_decode($file_data));     
+
+        $file = base64_decode($file_data);
+        \Storage::disk('public')->put($file_name, $file);     
       }
   
        // $create =  new TecnicoDocument;
