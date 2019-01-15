@@ -32,6 +32,7 @@ use Illuminate\Http\Request;
 			Route::post('infoBancaria','UserController@infoBancaria');
 			Route::get('getInfoBancaria/{id}','UserController@getInfoBancaria');
 			Route::get('getBancos','UserController@getBancos');
+			Route::get('getCredenciales/{id}','UserController@TecnicoDocumentController@credenciales');
 
 			Route::post('uploadCredential', 'Tecnico\TecnicoDocumentController@store');
 
