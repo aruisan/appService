@@ -105,7 +105,7 @@ class TecnicoDocumentController extends Controller
 
     public function credenciales($id)
     {
-        $credenciales = TecnicoDocument::where('user_id', id)->get();
+        $credenciales = TecnicoDocument::where('user_id',$id)->get();
 
         if($credenciales)
         {
