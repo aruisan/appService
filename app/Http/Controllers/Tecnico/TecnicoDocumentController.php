@@ -107,7 +107,7 @@ class TecnicoDocumentController extends Controller
     {
         $credenciales = TecnicoDocument::where('user_id', id)->get();
 
-        if ($bancos)
+        if($credenciales)
         {
             return response()->json(['data'=> $credenciales, 'status'=>'sucess'], 201);
         }    
