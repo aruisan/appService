@@ -66,7 +66,7 @@ class UserController extends Controller
 
         $user = auth('api')->user();
 
-        $user->rol = $request->rol;
+        $user->rol_id = $request->rol_id;
 
         if ($user->save())
         {
