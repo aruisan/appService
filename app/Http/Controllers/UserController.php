@@ -74,5 +74,13 @@ class UserController extends Controller
         }
 
 
+    }    
+
+    public function getUser(Request $request){
+
+        $user = auth('api')->user();
+
+        return response()->json(['data'=> $user, 'status'=>'sucess'], 201);
+        
     }
 }
