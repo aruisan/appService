@@ -61,5 +61,18 @@ class UserController extends Controller
             return response()->json(['data'=> $bancos, 'status'=>'sucess'], 201);
         }
 
+    }    
+    public function setRol(Request $request){
+
+        $user = auth('api')->user();
+
+        $user->rol = $request->rol;
+
+        if ($user->save())
+        {
+            return response()->json(['data'=> $user, 'status'=>'sucess'], 201);
+        }
+
+
     }
 }

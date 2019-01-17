@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->enum('rol', ['Admin', 'Tecnico', 'Cliente']);
+            $table->unsignedInteger('rol_id')->nullable();
             $table->string('avatar')->default('default');
             $table->string('phone_number')->nullable();
             $table->string('country_code')->nullable();
@@ -29,6 +29,10 @@ class CreateUsersTable extends Migration
             $table->enum('activo', [1,0])->default(0);
             $table->rememberToken();
             $table->timestamps();
+
+
+            $table->foreign('rol_id')->references('id')->on('roles');
+
         });
     }
 
