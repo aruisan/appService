@@ -37,7 +37,7 @@ use Illuminate\Http\Request;
 			Route::post('uploadCredential', 'Tecnico\TecnicoDocumentController@store');
 
 			Route::post('setUserRol', 'UserController@setRol');
-			Route::post('getUser', 'UserController@getUser');
+			Route::get('getUser', 'UserController@getUser');
 
 	});
 

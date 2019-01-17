@@ -76,7 +76,7 @@ class UserController extends Controller
 
     }    
 
-    public function getUser(Request $request){
+    public function getUser(){
 
         $user = auth('api')->user();
 
