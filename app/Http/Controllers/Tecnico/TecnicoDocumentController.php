@@ -103,7 +103,7 @@ class TecnicoDocumentController extends Controller
         
         $documento = TecnicoDocument::find($id);
 
-        if (\Storage::disk('certificados')->exists($documento->certifcado)) {
+        if (\Storage::disk('certificados')->exists($documento->certificado)) {
 
             \Storage::disk('certificados')->delete($documento->certificado);
         }
