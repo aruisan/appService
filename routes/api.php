@@ -39,7 +39,7 @@ use Illuminate\Http\Request;
 			Route::post('setUserRol', 'UserController@setRol');
 			Route::get('getUser', 'UserController@getUser');
 
-			Route::delete('credentialDelete/{id}', 'Tecnico\TecnicoDocumentControlle@destroy');
+			Route::delete('credentialDelete/{id}', 'Tecnico\TecnicoDocumentController@destroy');
 
 	});
 
