@@ -49,7 +49,7 @@ class TecnicoDocumentController extends Controller
         }
       
         $create =  new TecnicoDocument;
-        $create->documento = $file_name;
+        $create->documento = $request->description;
         $create->certificado = $file_name;
         $create->user_id = $user->id;
        
