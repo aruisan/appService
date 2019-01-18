@@ -100,7 +100,20 @@ class TecnicoDocumentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $documento = TecnicoDocument::find($id);
+
+        if (Storage::disk('certificados')->exists($documento->certifcado)) {
+
+            Storage::disk('certificados')->delete($documento->certificado);
+        }
+                
+        if ($documento->delete()) {
+            
+            return response()->json(['data'=> $documento], 200);
+        }
+        
+        return response()->json(['error' => 'No se pudo eliminar el registro'], 422);
     }
 
     public function credenciales($id)
