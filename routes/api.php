@@ -41,5 +41,10 @@ use Illuminate\Http\Request;
 
 			Route::delete('credentialDelete/{id}', 'Tecnico\TecnicoDocumentController@destroy');
 
+			Route::post('pay-payu', 'PayuController@payPayu');
+
+			Route::post('pay-payu', 'PayuController@payPayuMount');
+			// Route::get('payu/response' , 'PayuController@response');
+
 	});
 

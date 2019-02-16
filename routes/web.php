@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return "data";
 });
 
 
@@ -22,3 +22,5 @@ Route::get('auth/{social}/callback', 'Auth\LoginController@handleProviderCallbac
 
 Route::resource('certificacion', 'Tecnico\TecnicoDocumentController');
 Route::resource('admin-tecnico', 'Admin\UserTecnicoController');
+
+Route::get('payu/response' , 'PayuController@response');
