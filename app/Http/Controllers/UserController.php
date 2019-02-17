@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Cuenta;
 use App\Banco;
+use App\Cuenta;
+use App\Monedero;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -83,4 +84,16 @@ class UserController extends Controller
         return response()->json(['data'=> $user, 'status'=>'sucess'], 201);
         
     }
+
+    public function getInfoBancaria($id){
+
+      // $user = auth('api')->user();
+      $monedero = Monedero::where('user_id', $id)->first();
+
+        if ($monedero)
+        {
+            return response()->json(['data'=> $monedero, 'status'=>'sucess'], 201);
+        }
+
+    }  
 }
