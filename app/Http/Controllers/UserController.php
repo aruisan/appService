@@ -85,7 +85,7 @@ class UserController extends Controller
         
     }
 
-    public function getInfoBancaria($id){
+    public function getSaldo($id){
 
       // $user = auth('api')->user();
       $monedero = Monedero::where('user_id', $id)->first();
