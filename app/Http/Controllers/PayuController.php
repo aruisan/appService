@@ -141,7 +141,7 @@ class PayuController extends Controller
             $transaccion->reference_pol = $reference_pol;
             $transaccion->save();
 
-            $monedero = Monedero::where('user_id', $user_id);
+            $monedero = Monedero::where('user_id', $user_id)->first();
 
 
             $movimiento = new MonederoMovimiento;
