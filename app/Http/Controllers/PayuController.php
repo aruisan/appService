@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Monedero;
+use App\MonederoMovimiento;
 use App\Transaccion;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
