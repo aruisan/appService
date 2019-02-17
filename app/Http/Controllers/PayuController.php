@@ -147,7 +147,7 @@ class PayuController extends Controller
             $movimiento = new MonederoMovimiento;
             $movimiento->valor = $amount;
             $movimiento->monedero_id = $monedero->id;
-            $movimiento->cliente_id = user_id;
+            $movimiento->cliente_id = $user_id;
             $movimiento->state = "entry";
             $movimiento->save();
 
