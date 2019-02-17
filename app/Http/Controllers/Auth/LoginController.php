@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\Movil\movilApiRequest;
-use Socialite;
+use App\Monedero;
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -72,6 +73,11 @@ class LoginController extends Controller
             $user->email = $request->email;
             $user->avatar = $request->avatar;
             $user->save();
+
+            $monedero = new Monedero;
+            $monedero->stock = 0;
+            $monedero->user_id = $user->id;
+            $monedero->save();
         }
         return $this->authAndRedirect($user);
     }

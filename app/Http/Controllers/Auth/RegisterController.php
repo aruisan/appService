@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Monedero;
+use App\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -36,11 +37,17 @@ class RegisterController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => 'error', $validator->errors()]);
         }
-        User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
-        ]);
+        $user = User::create([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+            ]);
+
+        $monedero = new Monedero;
+        $monedero->stock = 0;
+        $monedero->user_id = $user->id;
+        $monedero->save();
+
         $credentials = request(['email', 'password']);
         $token = auth('api')->attempt($credentials);
         
