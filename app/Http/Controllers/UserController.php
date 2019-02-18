@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Banco;
 use App\Cuenta;
 use App\Monedero;
+use App\MonederoMovimiento;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -89,6 +90,31 @@ class UserController extends Controller
 
       // $user = auth('api')->user();
       $monedero = Monedero::where('user_id', $id)->first();
+
+        if ($monedero)
+        {
+            return response()->json(['data'=> $monedero, 'status'=>'sucess'], 201);
+        }
+
+    }     
+
+    public function retirarSaldo(Request $request){
+
+        $user = auth('api')->user();
+
+        // return $user;
+
+        $monedero = Monedero::where('user_id', $user->id)->first();
+
+        $movimiento = new MonederoMovimiento;
+        $movimiento->valor = $request->amount;
+        $movimiento->monedero_id = $monedero->id;
+        $movimiento->cliente_id = $user->id;
+        $movimiento->state = "exit";
+        $movimiento->save();
+
+        $monedero->stock = $monedero->stock - $request->amount;
+        $monedero->save();
 
         if ($monedero)
         {

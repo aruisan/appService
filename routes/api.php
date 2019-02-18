@@ -48,5 +48,6 @@ use Illuminate\Http\Request;
 			// Route::get('payu/response' , 'PayuController@response');
 
 			Route::get('getSaldo/{id}','UserController@getSaldo');
+			Route::post('retirarSaldo','UserController@retirarSaldo');
 	});
 
