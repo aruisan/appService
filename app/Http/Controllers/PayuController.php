@@ -153,6 +153,8 @@ class PayuController extends Controller
 
             $monedero->stock = $monedero->stock + $amount;
             $monedero->save();
+
+            return response()->json(['data'=> $monedero, 'status'=>'sucess'], 201);
       }
 
 
