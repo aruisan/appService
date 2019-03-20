@@ -60,6 +60,12 @@ return [
             'root' => storage_path('app/public/certificados'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+        ],        
+        'emergencias' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/emergencias'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
         's3' => [
