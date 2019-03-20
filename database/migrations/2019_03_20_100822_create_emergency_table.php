@@ -20,7 +20,11 @@ class CreateEmergencyTable extends Migration
             $table->integer('category_emergency');
             $table->double('lat');
             $table->double('lng');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

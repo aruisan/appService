@@ -20,6 +20,8 @@ class EmergencyController extends Controller
         $emergency->category_emergency = $request->category_emergency;
         $emergency->lat = $request->lat;
         $emergency->lng = $request->lng;
+        $emergency->user_id = $user->id;
+
 
         $emergency->save();
 
@@ -37,7 +39,18 @@ class EmergencyController extends Controller
             $create->save();
         }
        
-        return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
+        return response()->json(['data'=> $emergency, 'status'=>'sucess'], 201);
         
+    }
+
+
+    public function emergencys($id){
+
+        $credenciales = Emergency::where('user_id',$id)->get();
+
+        if($credenciales)
+        {
+            return response()->json(['data'=> $credenciales, 'status'=>'sucess'], 201);
+        }    
     }
 }
