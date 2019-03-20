@@ -25,7 +25,7 @@ class EmergencyController extends Controller
 
         foreach ($file_data as  $imagen) {
 
-            $file_name = 'image_'.time().rand(1,100).'.jpg';
+            $file_name = 'image_'.time().rand(1,1000).'.jpg';
           
             $file = base64_decode($imagen);
             \Storage::disk('emergencias')->put($file_name, $file);     
@@ -34,6 +34,7 @@ class EmergencyController extends Controller
             $create =  new EmergencyImagen;
             $create->url = $file_name;
             $create->emergency_id = $emergency->id;
+            $create->save();
         }
        
         return response()->json(['data'=> $create, 'status'=>'sucess'], 201);
