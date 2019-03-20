@@ -28,7 +28,7 @@ class EmergencyController extends Controller
           
             if($file_data!=""){
             
-                $file = base64_decode($file_data);
+                $file = base64_decode($imagen);
                 \Storage::disk('emergencias')->put($file_name, $file);     
             }
           
