@@ -49,6 +49,6 @@ use Illuminate\Http\Request;
 
 			Route::get('getSaldo/{id}','UserController@getSaldo');
 			Route::post('retirarSaldo','UserController@retirarSaldo');
-			Route::post('publish-emergency','EmergencyControllr@publishEmergency');
+			Route::post('publish-emergency','EmergencyController@publishEmergency');
 	});
 
