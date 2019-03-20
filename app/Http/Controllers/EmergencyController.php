@@ -22,7 +22,7 @@ class EmergencyController extends Controller
 
         $emergency->save();
 
-        foreach ($file_data as  $imagen {
+        foreach ($file_data as  $imagen) {
 
           $file_name = 'image_'.time().'.jpg';
           
