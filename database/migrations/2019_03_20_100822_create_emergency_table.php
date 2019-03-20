@@ -18,8 +18,8 @@ class CreateEmergencyTable extends Migration
             $table->string('description');
             $table->integer('type_emergency');
             $table->integer('category_emergency');
-            $table->integer('lat');
-            $table->integer('lng');
+            $table->double('lat');
+            $table->double('lng');
             $table->timestamps();
         });
     }
