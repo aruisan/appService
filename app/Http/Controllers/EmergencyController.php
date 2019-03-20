@@ -46,7 +46,7 @@ class EmergencyController extends Controller
 
     public function emergencys($id){
 
-        $emergencys = Emergency::where('user_id',$id)->get();
+        $emergencys = Emergency::where('user_id',$id)->with('emergencyImages')->get();
 
         if($emergencys)
         {
