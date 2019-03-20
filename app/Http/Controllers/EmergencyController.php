@@ -46,11 +46,11 @@ class EmergencyController extends Controller
 
     public function emergencys($id){
 
-        $credenciales = Emergency::where('user_id',$id)->get();
+        $emergencys = Emergency::where('user_id',$id)->get();
 
-        if($credenciales)
+        if($emergencys)
         {
-            return response()->json(['data'=> $credenciales, 'status'=>'sucess'], 201);
+            return response()->json(['data'=> $emergencys, 'status'=>'sucess'], 201);
         }    
     }
 }
