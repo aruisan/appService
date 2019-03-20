@@ -8,5 +8,5 @@ class EmergencyImagen extends Model
 {
     protected $table = 'emergency_imagen';
 
-    protected $fillable = ['url', 'emergency_id';
+    protected $fillable = ['url', 'emergency_id'];
 }
