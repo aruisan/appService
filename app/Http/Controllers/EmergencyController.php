@@ -56,7 +56,7 @@ class EmergencyController extends Controller
 
     public function emergencys(){
 
-        $emergencys = Emergency::all();
+        $emergencys = Emergency::with('emergencyImages')->get();
 
         if($emergencys)
         {
