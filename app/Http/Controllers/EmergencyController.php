@@ -66,15 +66,15 @@ class EmergencyController extends Controller
     
     public function asignarEspecialista($id, $emergency){
 
-        $emergencys = Emergency::findOrFail($emergency);
+        $emergency = Emergency::findOrFail($emergency);
 
         $emergency->especialista_id = $id;
 
         $emergency->save();    
 
-        if($emergencys)
+        if($emergency)
         {
-            return response()->json(['data'=> $emergencys, 'status'=>'sucess'], 201);
+            return response()->json(['data'=> $emergency, 'status'=>'sucess'], 201);
         }    
     }
 }
