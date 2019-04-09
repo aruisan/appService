@@ -54,5 +54,6 @@ use Illuminate\Http\Request;
 			Route::get('getMyEmergencys/{id}','EmergencyController@myEmergencys');
 			Route::get('getEmergencys','EmergencyController@emergencys');
 
+			Route::get('asignarEspecialista/{id}/{emergency}','EmergencyController@asignarEspecialista');
 	});
 

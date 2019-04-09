@@ -52,11 +52,25 @@ class EmergencyController extends Controller
         {
             return response()->json(['data'=> $emergencys, 'status'=>'sucess'], 201);
         }    
-    }
+    }    
 
     public function emergencys(){
 
-        $emergencys = Emergency::with('emergencyImages')->get();
+        $emergencys = Emergency::with('emergencyImages', 'user')->get();
+
+        if($emergencys)
+        {
+            return response()->json(['data'=> $emergencys, 'status'=>'sucess'], 201);
+        }    
+    }
+    
+    public function asignarEspecialista($id, $emergency){
+
+        $emergencys = Emergency::findOrFaild($emergency);
+
+        $emergency->especialista_id = $id;
+
+        $emergency->save();    
 
         if($emergencys)
         {
