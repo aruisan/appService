@@ -66,7 +66,7 @@ class EmergencyController extends Controller
     
     public function asignarEspecialista($id, $emergency){
 
-        $emergencys = Emergency::findOrFaild($emergency);
+        $emergencys = Emergency::findOrFail($emergency);
 
         $emergency->especialista_id = $id;
 
