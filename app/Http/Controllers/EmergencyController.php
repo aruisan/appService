@@ -48,7 +48,7 @@ class EmergencyController extends Controller
 
         $user = auth('api')->user();
 
-        $emergencys = Emergency::where('user_id',$user_id)->orWhere('especialista_id', $user_id)->with('emergencyImages')->get();
+        $emergencys = Emergency::where('user_id',$user->id)->orWhere('especialista_id', $user->id)->with('emergencyImages')->get();
 
         if($emergencys)
         {
