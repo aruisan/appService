@@ -72,6 +72,7 @@ class LoginController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->avatar = $request->avatar;
+            $user->rol = $request->rol;
             $user->save();
 
             $monedero = new Monedero;
@@ -95,6 +96,7 @@ class LoginController extends Controller
             $user->name = $userSocial->name;
             $user->email = $userSocial->email;
             $user->avatar = $userSocial->avatar;
+            $user->rol = $userSocial->rol;
             $user->save();
         }
         return $this->authAndRedirect($user);
