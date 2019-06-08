@@ -55,5 +55,9 @@ use Illuminate\Http\Request;
 			Route::get('getEmergencys','EmergencyController@emergencys');
 
 			Route::get('asignarEspecialista/{id}/{emergency}','EmergencyController@asignarEspecialista');
+
+
+			Route::post('horario','HorarioController@store');
+			Route::get('getHorarios/{id}','HorarioController@myHorarios');
 	});
 
