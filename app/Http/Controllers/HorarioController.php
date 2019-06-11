@@ -90,7 +90,11 @@ class HorarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $horario = Horario::find($id);
+        $horario->delete();
+
+        return response()->json(['data'=> $horario], 200);
+
     }
 
     public function myHorarios($id){

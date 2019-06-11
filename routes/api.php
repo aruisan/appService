@@ -58,6 +58,7 @@ use Illuminate\Http\Request;
 
 
 			Route::post('horario','HorarioController@store');
+			Route::delete('horario/{id}', 'HorarioController@destroy');
 			Route::get('getHorarios/{id}','HorarioController@myHorarios');
 	});
 
